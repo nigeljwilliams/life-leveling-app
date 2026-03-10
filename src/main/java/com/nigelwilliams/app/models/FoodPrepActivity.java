@@ -1,12 +1,13 @@
 package com.nigelwilliams.app.models;
 
+import com.nigelwilliams.app.models.enums.FoodPrepActivityType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public abstract class BaseActivity extends BaseDocument{
-    private int experiencePoints; // Experience associated with the activity
-    private String userId; // The user who performed the activity
+@Document(collection = "food_prep_activity")
+public class FoodPrepActivity extends BaseActivity {
+    private FoodPrepActivityType type;
 }

@@ -2,6 +2,7 @@ package com.nigelwilliams.app.models.enums;
 
 
 public enum ExerciseActivityType {
+    NONE,
     WALK,
     RUN,
     OTHER_CARDIO,
