@@ -17,12 +17,4 @@ public class ActivityTypeHandlerFactory {
         System.out.println("Activity type string: " + type.toString());
         return activityTypeHandlers.get(type.toString());
     }
-//    public void handleActivity(ActivityType type) {
-//        ActivityTypeHandler activityTypeHandler = activityTypeHandlers.get(type.toString());
-//        if (activityTypeHandler != null) {
-//            activityTypeHandler.handleActivity();
-//        } else {
-//            System.err.println("Failed to handle " + type + " activity in Factory.");
-//        }
-//    }
 }

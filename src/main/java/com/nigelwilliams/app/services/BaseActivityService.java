@@ -6,7 +6,10 @@ import java.util.List;
 
 public abstract class BaseActivityService {
     public abstract List<? extends BaseActivity> getAllActivities();
+    public abstract List<? extends BaseActivity> getAllByUserId(String userId);
     public abstract BaseActivity addActivity(BaseActivity activity);
     public abstract BaseActivity updateActivity(BaseActivity activity);
+    public abstract boolean deleteAll();
     public abstract boolean deleteActivity(String id);
+    public abstract long deleteAllByUserId(String userId);
 }

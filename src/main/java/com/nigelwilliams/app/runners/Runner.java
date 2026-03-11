@@ -15,16 +15,17 @@ import java.util.Scanner;
 @RequiredArgsConstructor // Lombok will automatically generate the constructor with services and repos set in it
 public class Runner implements CommandLineRunner {
     private final InputHelperService inputHelperService;
+    private final UserSessionService userSessionService;
 
-    private final ExerciseActivityService exerciseActivityService;
+    private final UserService userService;
     private final CleaningActivityService cleaningActivityService;
+    private final ExerciseActivityService exerciseActivityService;
     private final FoodPrepActivityService foodPrepActivityService;
     private final HygieneActivityService hygieneActivityService;
-    private final UserService userService;
     private final YardWorkActivityService yardWorkActivityService;
 
     private final Scanner scanner = new Scanner(System.in);
-    private final UserSessionService userSessionService;
+
 
     @Override
     public void run(String... args) {
@@ -34,7 +35,7 @@ public class Runner implements CommandLineRunner {
             for (User user : userService.getAllUsers()) {
                 System.out.println("[" + user.getName() + "] ");
             }
-            System.out.println("\n[A] CREATE ACCOUNT, [B] LOGIN, [C] DELETE EXISTING ACCOUNT");
+            System.out.println("\n[A] CREATE ACCOUNT, [B] LOGIN, [C] DELETE EXISTING ACCOUNT, [D] DELETE ALL ACTIVITIES");
 
             char accountOptionCode = InputHelperUtil.getCharFromInput(scanner);
             switch (accountOptionCode) {
@@ -73,6 +74,11 @@ public class Runner implements CommandLineRunner {
                     }
                     break;
                 }
+                case 'D': {
+                    promptUserAndDeleteAllActivities();
+                    System.out.println("\nDelete calls are finished");
+                    break;
+                }
                 default: {
                     System.err.println("\nInvalid option selected. Exiting Program.");
                     break;
@@ -96,6 +102,7 @@ public class Runner implements CommandLineRunner {
             User newUser = new User();
             newUser.setName(name);
             newUser.setLevel(1);
+            newUser.setMaxExperiencePoints(100);
 
             return userService.addUser(newUser);
         }
@@ -119,10 +126,33 @@ public class Runner implements CommandLineRunner {
         if (name != null) {
             User existingUser = userService.getUserByName(name);
             if (existingUser != null) {
-                return userService.deleteUser(existingUser.getId());
+                return userService.deleteUserAndRelevantData(existingUser.getId());
             }
         }
 
         return false;
+    }
+
+    private void promptUserAndDeleteAllActivities() {
+        if (!cleaningActivityService.deleteAll()) {
+            System.out.println("Could not delete all Cleaning Activities. Either call failed, or no activities " +
+                    "were found");
+        }
+        if (!exerciseActivityService.deleteAll()) {
+            System.out.println("Could not delete all Exercise Activities. Either call failed, or no activities " +
+                    "were found");
+        }
+        if (!foodPrepActivityService.deleteAll()) {
+            System.out.println("Could not delete all Food Prep Activities. Either call failed, or no activities " +
+                    "were found");
+        }
+        if (!hygieneActivityService.deleteAll()) {
+            System.out.println("Could not delete all Hygiene Activities. Either call failed, or no activities " +
+                    "were found");
+        }
+        if (!yardWorkActivityService.deleteAll()) {
+            System.out.println("Could not delete all Yard Work Activities. Either call failed, or no activities " +
+                    "were found");
+        }
     }
 }

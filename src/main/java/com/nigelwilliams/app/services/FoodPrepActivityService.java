@@ -20,6 +20,11 @@ public class FoodPrepActivityService extends BaseActivityService {
     }
 
     @Override
+    public List<FoodPrepActivity> getAllByUserId(String userId) {
+        return foodPrepActivityRepository.findAllByUserId(userId);
+    }
+
+    @Override
     public FoodPrepActivity addActivity(BaseActivity activity) {
         try {
             return foodPrepActivityRepository.insert((FoodPrepActivity)activity);
@@ -42,6 +47,19 @@ public class FoodPrepActivityService extends BaseActivityService {
     }
 
     @Override
+    public boolean deleteAll() {
+        try {
+            foodPrepActivityRepository.deleteAll();
+        } catch (Exception e) {
+            System.err.println("Failed to delete all Food Prep Activities");
+
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
     public boolean deleteActivity(String id) {
         try {
             foodPrepActivityRepository.deleteById(id);
@@ -52,5 +70,16 @@ public class FoodPrepActivityService extends BaseActivityService {
         }
 
         return true;
+    }
+
+    @Override
+    public long deleteAllByUserId(String userId) {
+        try {
+            return foodPrepActivityRepository.deleteAllByUserId(userId);
+        } catch (Exception e) {
+            System.err.println("Failed to delete all Food Prep Activities by User Id: " + e.getMessage());
+        }
+
+        return 0;
     }
 }

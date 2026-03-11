@@ -20,6 +20,11 @@ public class HygieneActivityService extends BaseActivityService {
     }
 
     @Override
+    public List<HygieneActivity> getAllByUserId(String userId) {
+        return hygieneActivityRepository.findAllByUserId(userId);
+    }
+
+    @Override
     public HygieneActivity addActivity(BaseActivity activity) {
         try {
             return hygieneActivityRepository.insert((HygieneActivity)activity);
@@ -42,6 +47,19 @@ public class HygieneActivityService extends BaseActivityService {
     }
 
     @Override
+    public boolean deleteAll() {
+        try {
+            hygieneActivityRepository.deleteAll();
+        } catch (Exception e) {
+            System.err.println("Failed to delete all Hygiene Activities");
+
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
     public boolean deleteActivity(String id) {
         try {
             hygieneActivityRepository.deleteById(id);
@@ -52,5 +70,16 @@ public class HygieneActivityService extends BaseActivityService {
         }
 
         return true;
+    }
+
+    @Override
+    public long deleteAllByUserId(String userId) {
+        try {
+            return hygieneActivityRepository.deleteAllByUserId(userId);
+        } catch (Exception e) {
+            System.err.println("Failed to delete all Hygiene Activities by User Id: " + e.getMessage());
+        }
+
+        return 0;
     }
 }

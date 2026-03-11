@@ -19,6 +19,11 @@ public class YardWorkActivityService extends BaseActivityService {
     }
 
     @Override
+    public List<YardWorkActivity> getAllByUserId(String userId) {
+        return yardWorkActivityRepository.findAllByUserId(userId);
+    }
+
+    @Override
     public YardWorkActivity addActivity(BaseActivity activity) {
         try {
             return yardWorkActivityRepository.insert((YardWorkActivity)activity);
@@ -41,6 +46,19 @@ public class YardWorkActivityService extends BaseActivityService {
     }
 
     @Override
+    public boolean deleteAll() {
+        try {
+            yardWorkActivityRepository.deleteAll();
+        } catch (Exception e) {
+            System.err.println("Failed to delete all Yard Work Activities");
+
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
     public boolean deleteActivity(String id) {
         try {
             yardWorkActivityRepository.deleteById(id);
@@ -51,5 +69,16 @@ public class YardWorkActivityService extends BaseActivityService {
         }
 
         return true;
+    }
+
+    @Override
+    public long deleteAllByUserId(String userId) {
+        try {
+            return yardWorkActivityRepository.deleteAllByUserId(userId);
+        } catch (Exception e) {
+            System.err.println("Failed to delete all Yard Work Activities by User Id: " + e.getMessage());
+        }
+
+        return 0;
     }
 }

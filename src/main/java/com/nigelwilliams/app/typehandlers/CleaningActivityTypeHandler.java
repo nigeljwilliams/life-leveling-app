@@ -1,7 +1,10 @@
 package com.nigelwilliams.app.typehandlers;
 
 
+import com.nigelwilliams.app.models.CleaningActivity;
+import com.nigelwilliams.app.models.User;
 import com.nigelwilliams.app.models.enums.CleaningActivityType;
+import com.nigelwilliams.app.services.CleaningActivityService;
 import com.nigelwilliams.app.services.UserService;
 import com.nigelwilliams.app.services.UserSessionService;
 import com.nigelwilliams.app.services.enums.ActivityType;
@@ -15,17 +18,18 @@ import java.util.Map;
 public final class CleaningActivityTypeHandler implements ActivityTypeHandler {
     private final UserSessionService userSessionService;
     private final UserService userService;
+    private final CleaningActivityService cleaningActivityService;
 
     private CleaningActivityType type;
-    private final Map<CleaningActivityType, Integer> typeExperiencePointsMap = Map.of(
-            CleaningActivityType.DISHES, 10,
-            CleaningActivityType.LAUNDRY, 15,
-            CleaningActivityType.MOPPING, 15,
-            CleaningActivityType.SWEEPING, 10,
-            CleaningActivityType.TOILET, 15,
-            CleaningActivityType.STOVE, 10,
-            CleaningActivityType.ROOM, 15,
-            CleaningActivityType.DUSTING, 10
+    private final Map<CleaningActivityType, Integer> typeExperiencePointsMap = Map.ofEntries(
+            Map.entry(CleaningActivityType.DISHES, 10),
+            Map.entry(CleaningActivityType.LAUNDRY, 15),
+            Map.entry(CleaningActivityType.MOPPING, 15),
+            Map.entry(CleaningActivityType.SWEEPING, 10),
+            Map.entry(CleaningActivityType.TOILET, 15),
+            Map.entry(CleaningActivityType.STOVE, 10),
+            Map.entry(CleaningActivityType.ROOM, 15),
+            Map.entry(CleaningActivityType.DUSTING, 10)
     );
 
     @Override
@@ -35,9 +39,25 @@ public final class CleaningActivityTypeHandler implements ActivityTypeHandler {
 
     @Override
     public void handleActivity() {
-        System.out.println("You chose " + type);
-        int expPoints = typeExperiencePointsMap.get(type);
+        User currentUser = userSessionService.getCurrentUser();
+        if (currentUser == null) {
+            System.err.println("Can't proceed. You're not signed in. (This shouldn't be happening)");
 
+            return;
+        }
+
+        System.out.println("You chose " + type);
+        CleaningActivity activity = new CleaningActivity();
+        activity.setType(type);
+        int expPoints = typeExperiencePointsMap.get(type);
+        activity.setExperiencePoints(expPoints);
+        activity.setUserId(currentUser.getId());
+
+        cleaningActivityService.addActivity(activity);
+
+        userService.updateExperienceAndSave(currentUser.getId(), expPoints);
+
+        System.out.println("You gained " + expPoints + " experience!");
     }
 
     public void setCleaningActivityType(CleaningActivityType type) {

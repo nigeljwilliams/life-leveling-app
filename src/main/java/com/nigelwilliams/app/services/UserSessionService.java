@@ -35,4 +35,10 @@ public class UserSessionService {
 
         return false;
     }
+
+    public void logout() {
+        if (currentUser != null) {
+            currentUser = null;
+        }
+    }
 }

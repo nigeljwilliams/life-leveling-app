@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface YardWorkActivityRepository extends MongoRepository<YardWorkActivity, String> {
+public interface YardWorkActivityRepository extends BaseActivityRepository<YardWorkActivity, String> {
     List<YardWorkActivity> findByType(YardWorkActivityType type);
 }

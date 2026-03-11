@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CleaningActivityRepository extends MongoRepository<CleaningActivity, String> {
+public interface CleaningActivityRepository extends BaseActivityRepository<CleaningActivity, String> {
     List<CleaningActivity> findByType(CleaningActivityType type);
 }

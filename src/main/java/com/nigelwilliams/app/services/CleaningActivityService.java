@@ -18,6 +18,11 @@ public class CleaningActivityService extends BaseActivityService {
         return cleaningActivityRepository.findAll();
     }
 
+    @Override
+    public List<CleaningActivity> getAllByUserId(String userId) {
+        return cleaningActivityRepository.findAllByUserId(userId);
+    }
+
     public CleaningActivity getCleaningActivity(String id) {
         return cleaningActivityRepository.findById(id).orElse(null);
     }
@@ -45,6 +50,19 @@ public class CleaningActivityService extends BaseActivityService {
     }
 
     @Override
+    public boolean deleteAll() {
+        try {
+            cleaningActivityRepository.deleteAll();
+        } catch (Exception e) {
+            System.err.println("Failed to delete all Cleaning Activities");
+
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
     public boolean deleteActivity(String id) {
         try {
             cleaningActivityRepository.deleteById(id);
@@ -55,5 +73,16 @@ public class CleaningActivityService extends BaseActivityService {
         }
 
         return true;
+    }
+
+    @Override
+    public long deleteAllByUserId(String userId) {
+        try {
+            return cleaningActivityRepository.deleteAllByUserId(userId);
+        } catch (Exception e) {
+            System.err.println("Failed to delete all Cleaning Activities by User Id: " + e.getMessage());
+        }
+
+        return 0;
     }
 }
