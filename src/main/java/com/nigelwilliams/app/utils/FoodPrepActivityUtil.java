@@ -21,6 +21,9 @@ public class FoodPrepActivityUtil {
             case 'L' -> FoodPrepActivityType.COOK_EASY_DINNER;
             case 'M' -> FoodPrepActivityType.COOK_MEDIUM_DINNER;
             case 'N' -> FoodPrepActivityType.COOK_DIFFICULT_DINNER;
+            case 'O' -> FoodPrepActivityType.COOK_EASY_DESSERT;
+            case 'P' -> FoodPrepActivityType.COOK_MEDIUM_DESSERT;
+            case 'Q' -> FoodPrepActivityType.COOK_DIFFICULT_DESSERT;
             default -> FoodPrepActivityType.NONE;
         };
     }
@@ -32,6 +35,7 @@ public class FoodPrepActivityUtil {
                 [H] COOK DIFFICULT BREAKFAST, [I] COOK EASY LUNCH, [J] COOK MEDIUM LUNCH, \
                 [K] COOK DIFFICULT LUNCH
                 [L] COOK EASY DINNER, [M] COOK MEDIUM DINNER, [N] COOK DIFFICULT DINNER
+                [O] COOK EASY DESSERT, [P] COOK MEDIUM DESSERT, [Q] COOK DIFFICULT DESSERT
                 [Q] GO BACK""");
     }
 
@@ -39,10 +43,10 @@ public class FoodPrepActivityUtil {
         System.out.println("\nWhat was the food prep activity?");
         printActivityInputOptions();
 
-        String input = scanner.next();
-        if (input.length() == 1) {
-            System.out.println("\nYou entered [" + input + "]");
-            return fromActivityCode(input.charAt(0));
+        char activityChar = InputHelperUtil.getLetterFromInput(scanner);
+        if (activityChar != 0) {
+            System.out.println("\nYou entered [" + activityChar + "]");
+            return fromActivityCode(activityChar);
         }
 
         return FoodPrepActivityType.NONE;

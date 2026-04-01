@@ -14,6 +14,8 @@ public class HygieneActivityUtil {
             case 'E' -> HygieneActivityType.CLIP_TOE_NAILS;
             case 'F' -> HygieneActivityType.CLEAN_NOSE;
             case 'G' -> HygieneActivityType.CLEAN_EARS;
+            case 'H' -> HygieneActivityType.CUT_HAIR;
+            case 'I' -> HygieneActivityType.SHAVE;
             default -> HygieneActivityType.NONE;
         };
     }
@@ -21,7 +23,8 @@ public class HygieneActivityUtil {
     public static void printActivityInputOptions() {
         System.out.println("""
                 [A] BRUSH TEETH, [B] SHOWER, [C] WASH HAIR, [D] CLIP FINGER NAILS
-                [E] CLIP TOE NAILS, [F] CLEAN NOSE, [G] CLEAN EARS
+                [E] CLIP TOE NAILS, [F] CLEAN NOSE, [G] CLEAN EARS, [H] CUT HAIR
+                [I] SHAVE
                 [Q] GO BACK""");
     }
 
@@ -29,10 +32,10 @@ public class HygieneActivityUtil {
         System.out.println("\nWhat was the hygiene activity?");
         printActivityInputOptions();
 
-        String input = scanner.next();
-        if (input.length() == 1) {
-            System.out.println("\nYou entered [" + input + "]");
-            return fromActivityCode(input.charAt(0));
+        char activityChar = InputHelperUtil.getLetterFromInput(scanner);
+        if (activityChar != 0) {
+            System.out.println("\nYou entered [" + activityChar + "]");
+            return fromActivityCode(activityChar);
         }
 
         return HygieneActivityType.NONE;

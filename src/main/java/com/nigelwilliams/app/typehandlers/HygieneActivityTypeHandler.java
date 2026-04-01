@@ -1,6 +1,5 @@
 package com.nigelwilliams.app.typehandlers;
 
-import com.nigelwilliams.app.models.CleaningActivity;
 import com.nigelwilliams.app.models.HygieneActivity;
 import com.nigelwilliams.app.models.User;
 import com.nigelwilliams.app.models.enums.HygieneActivityType;
@@ -29,7 +28,9 @@ public final class HygieneActivityTypeHandler implements ActivityTypeHandler {
             Map.entry(HygieneActivityType.CLIP_FINGER_NAILS, 10),
             Map.entry(HygieneActivityType.CLIP_TOE_NAILS, 15),
             Map.entry(HygieneActivityType.CLEAN_NOSE, 10),
-            Map.entry(HygieneActivityType.CLEAN_EARS, 10)
+            Map.entry(HygieneActivityType.CLEAN_EARS, 10),
+            Map.entry(HygieneActivityType.CUT_HAIR, 20),
+            Map.entry(HygieneActivityType.SHAVE, 10)
     );
 
     @Override

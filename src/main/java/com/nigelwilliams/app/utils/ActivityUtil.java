@@ -25,10 +25,10 @@ public class ActivityUtil {
         System.out.println("\nWhat activity do you want to record?");
         printActivityInputOptions();
 
-        String input = scanner.next();
-        if (input.length() == 1) {
-            System.out.println("\nYou entered [" + input + "]");
-            return fromActivityCode(input.charAt(0));
+        char activityChar = InputHelperUtil.getLetterFromInput(scanner);
+        if (activityChar != 0) {
+            System.out.println("\nYou entered [" + activityChar + "]");
+            return fromActivityCode(activityChar);
         }
 
         return ActivityType.NONE;

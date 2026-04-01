@@ -9,4 +9,6 @@ public enum HygieneActivityType {
     CLIP_TOE_NAILS,
     CLEAN_NOSE,
     CLEAN_EARS,
+    CUT_HAIR,
+    SHAVE,
 }

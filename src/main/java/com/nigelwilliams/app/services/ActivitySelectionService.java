@@ -20,42 +20,52 @@ public class ActivitySelectionService {
         switch (selectedActivityType) {
             case CLEANING: {
                 CleaningActivityType cleaningActivityType = CleaningActivityUtil.promptAndReturnActivity(scanner);
-                CleaningActivityTypeHandler handler =
-                        (CleaningActivityTypeHandler) factory.getActivityTypeHandler(selectedActivityType);
-                handler.setCleaningActivityType(cleaningActivityType);
-                handler.handleActivity();
+                if (cleaningActivityType != CleaningActivityType.NONE) {
+                    CleaningActivityTypeHandler handler =
+                            (CleaningActivityTypeHandler) factory.getActivityTypeHandler(selectedActivityType);
+                    handler.setCleaningActivityType(cleaningActivityType);
+                    handler.handleActivity();
+                }
                 break;
             }
             case EXERCISE: {
                 ExerciseActivityType exerciseActivityType = ExerciseActivityUtil.promptAndReturnActivity(scanner);
-                ExerciseActivityTypeHandler handler =
-                        (ExerciseActivityTypeHandler) factory.getActivityTypeHandler(selectedActivityType);
-                handler.setExerciseActivityType(exerciseActivityType);
-                handler.handleActivity();
+                if (exerciseActivityType != ExerciseActivityType.NONE) {
+                    ExerciseActivityTypeHandler handler =
+                            (ExerciseActivityTypeHandler) factory.getActivityTypeHandler(selectedActivityType);
+                    handler.setExerciseActivityType(exerciseActivityType);
+                    handler.handleActivity();
+                }
                 break;
             }
             case FOOD_PREP: {
                 FoodPrepActivityType foodPrepActivityType = FoodPrepActivityUtil.promptAndReturnActivity(scanner);
-                FoodPrepActivityTypeHandler handler =
-                        (FoodPrepActivityTypeHandler) factory.getActivityTypeHandler(selectedActivityType);
-                handler.setFoodPrepActivityType(foodPrepActivityType);
-                handler.handleActivity();
+                if (foodPrepActivityType != FoodPrepActivityType.NONE) {
+                    FoodPrepActivityTypeHandler handler =
+                            (FoodPrepActivityTypeHandler) factory.getActivityTypeHandler(selectedActivityType);
+                    handler.setFoodPrepActivityType(foodPrepActivityType);
+                    handler.handleActivity();
+                }
                 break;
             }
             case HYGIENE: {
                 HygieneActivityType hygieneActivityType = HygieneActivityUtil.promptAndReturnActivity(scanner);
-                HygieneActivityTypeHandler handler =
-                        (HygieneActivityTypeHandler) factory.getActivityTypeHandler(selectedActivityType);
-                handler.setHygieneActivityType(hygieneActivityType);
-                handler.handleActivity();
+                if (hygieneActivityType != HygieneActivityType.NONE) {
+                    HygieneActivityTypeHandler handler =
+                            (HygieneActivityTypeHandler) factory.getActivityTypeHandler(selectedActivityType);
+                    handler.setHygieneActivityType(hygieneActivityType);
+                    handler.handleActivity();
+                }
                 break;
             }
             default: { // ActivityType.YARD_WORK
                 YardWorkActivityType yardWorkActivityType = YardWorkActivityUtil.promptAndReturnActivity(scanner);
-                YardWorkActivityTypeHandler handler =
-                        (YardWorkActivityTypeHandler) factory.getActivityTypeHandler(selectedActivityType);
-                handler.setYardWorkActivityType(yardWorkActivityType);
-                handler.handleActivity();
+                if (yardWorkActivityType != YardWorkActivityType.NONE) {
+                    YardWorkActivityTypeHandler handler =
+                            (YardWorkActivityTypeHandler) factory.getActivityTypeHandler(selectedActivityType);
+                    handler.setYardWorkActivityType(yardWorkActivityType);
+                    handler.handleActivity();
+                }
                 break;
             }
         }

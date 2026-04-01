@@ -1,9 +1,7 @@
 package com.nigelwilliams.app.typehandlers;
 
-import com.nigelwilliams.app.models.CleaningActivity;
 import com.nigelwilliams.app.models.FoodPrepActivity;
 import com.nigelwilliams.app.models.User;
-import com.nigelwilliams.app.models.enums.CleaningActivityType;
 import com.nigelwilliams.app.models.enums.FoodPrepActivityType;
 import com.nigelwilliams.app.services.FoodPrepActivityService;
 import com.nigelwilliams.app.services.UserService;
@@ -36,7 +34,10 @@ public final class FoodPrepActivityTypeHandler implements ActivityTypeHandler {
             Map.entry(FoodPrepActivityType.COOK_DIFFICULT_LUNCH, 17),
             Map.entry(FoodPrepActivityType.COOK_EASY_DINNER, 10),
             Map.entry(FoodPrepActivityType.COOK_MEDIUM_DINNER, 15),
-            Map.entry(FoodPrepActivityType.COOK_DIFFICULT_DINNER, 20)
+            Map.entry(FoodPrepActivityType.COOK_DIFFICULT_DINNER, 20),
+            Map.entry(FoodPrepActivityType.COOK_EASY_DESSERT, 10),
+            Map.entry(FoodPrepActivityType.COOK_MEDIUM_DESSERT, 15),
+            Map.entry(FoodPrepActivityType.COOK_DIFFICULT_DESSERT, 20)
     );
 
     @Override

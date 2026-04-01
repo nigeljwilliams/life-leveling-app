@@ -16,6 +16,20 @@ public class InputHelperUtil {
         return 0;
     }
 
+    public static char getLetterFromInput(Scanner scanner) {
+        try {
+            String input = scanner.next();
+            char value = input.charAt(0);
+            if (input.length() == 1 && Character.isLetter(value)) {
+                return value;
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to read input: " + e.getMessage());
+        }
+
+        return 0;
+    }
+
     public static String getNameFromInput(Scanner scanner) {
         try {
             return scanner.next();

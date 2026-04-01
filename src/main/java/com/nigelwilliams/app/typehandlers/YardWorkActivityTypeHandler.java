@@ -1,9 +1,7 @@
 package com.nigelwilliams.app.typehandlers;
 
-import com.nigelwilliams.app.models.HygieneActivity;
 import com.nigelwilliams.app.models.User;
 import com.nigelwilliams.app.models.YardWorkActivity;
-import com.nigelwilliams.app.models.enums.HygieneActivityType;
 import com.nigelwilliams.app.models.enums.YardWorkActivityType;
 import com.nigelwilliams.app.services.UserService;
 import com.nigelwilliams.app.services.UserSessionService;

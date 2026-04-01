@@ -14,7 +14,6 @@ public class ActivityTypeHandlerFactory {
     private final Map<String, ActivityTypeHandler> activityTypeHandlers;
 
     public ActivityTypeHandler getActivityTypeHandler(ActivityType type) {
-        System.out.println("Activity type string: " + type.toString());
         return activityTypeHandlers.get(type.toString());
     }
 }

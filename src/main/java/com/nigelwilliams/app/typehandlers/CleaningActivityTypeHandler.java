@@ -29,7 +29,10 @@ public final class CleaningActivityTypeHandler implements ActivityTypeHandler {
             Map.entry(CleaningActivityType.TOILET, 15),
             Map.entry(CleaningActivityType.STOVE, 10),
             Map.entry(CleaningActivityType.ROOM, 15),
-            Map.entry(CleaningActivityType.DUSTING, 10)
+            Map.entry(CleaningActivityType.DUSTING, 10),
+            Map.entry(CleaningActivityType.VACUUMING, 10),
+            Map.entry(CleaningActivityType.WINDOWS, 15),
+            Map.entry(CleaningActivityType.CARPET_SCRUBBING, 30)
     );
 
     @Override

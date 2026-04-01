@@ -10,4 +10,7 @@ public enum CleaningActivityType {
     STOVE,
     ROOM,
     DUSTING,
+    VACUUMING,
+    WINDOWS,
+    CARPET_SCRUBBING,
 }

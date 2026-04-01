@@ -15,23 +15,29 @@ public class CleaningActivityUtil {
             case 'F' -> CleaningActivityType.STOVE;
             case 'G' -> CleaningActivityType.ROOM;
             case 'H' -> CleaningActivityType.DUSTING;
+            case 'I' -> CleaningActivityType.VACUUMING;
+            case 'J' -> CleaningActivityType.WINDOWS;
+            case 'K' -> CleaningActivityType.CARPET_SCRUBBING;
             default -> CleaningActivityType.NONE;
         };
     }
 
     public static void printActivityInputOptions() {
-        System.out.println("[A] DISHES, [B] LAUNDRY, [C] MOPPING, [D] SWEEPING, " +
-                "[E] TOILET, [F] STOVE, [G] ROOM, [H] DUSTING\n[Q] GO BACK");
+        System.out.println("""
+                [A] DISHES, [B] LAUNDRY, [C] MOPPING, [D] SWEEPING, \
+                [E] TOILET, [F] STOVE, [G] ROOM
+                [H] DUSTING, [I] VACUUMING, [J] WINDOWS, [K] CARPET SCRUBBING
+                [Q] GO BACK""");
     }
 
     public static CleaningActivityType promptAndReturnActivity(Scanner scanner) {
         System.out.println("\nWhat was the cleaning activity?");
         printActivityInputOptions();
 
-        String input = scanner.next();
-        if (input.length() == 1) {
-            System.out.println("\nYou entered [" + input + "]");
-            return fromActivityCode(input.charAt(0));
+        char activityChar = InputHelperUtil.getLetterFromInput(scanner);
+        if (activityChar != 0) {
+            System.out.printf("\nYou entered [" + activityChar + "]");
+            return fromActivityCode(activityChar);
         }
 
         return CleaningActivityType.NONE;

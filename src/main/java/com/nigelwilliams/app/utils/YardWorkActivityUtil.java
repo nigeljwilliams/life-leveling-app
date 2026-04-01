@@ -28,10 +28,10 @@ public class YardWorkActivityUtil {
         System.out.println("\nWhat was the yard work activity?");
         printActivityInputOptions();
 
-        String input = scanner.next();
-        if (input.length() == 1) {
-            System.out.println("\nYou entered [" + input + "]");
-            return fromActivityCode(input.charAt(0));
+        char activityChar = InputHelperUtil.getLetterFromInput(scanner);
+        if (activityChar != 0) {
+            System.out.println("\nYou entered [" + activityChar + "]");
+            return fromActivityCode(activityChar);
         }
 
         return YardWorkActivityType.NONE;
